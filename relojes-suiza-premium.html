@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relojes Suiza – Relojería Suiza desde 1898</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Jost:wght@200;300;400;500;600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:       #C9A84C;
+  --gold-light: #EDD98A;
+  --gold-dark:  #7A5C1E;
+  --red:        #7B1818;
+  --red-light:  #B02020;
+  --navy:       #080C18;
+  --navy2:      #0D1220;
+  --navy3:      #121828;
+  --white:      #F4ECD8;
+  --muted:      #8A7A5A;
+  --silver:     #C8C8CC;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--navy);
+  color:var(--white);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+::selection{background:var(--gold);color:var(--navy);}
+
+/* GRAIN */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9998;opacity:.4;
+}
+
+/* ══════════════════════════════════════
+   INTRO CINEMATIC
+══════════════════════════════════════ */
+#intro{
+  position:fixed;inset:0;z-index:5000;
+  background:var(--navy);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:1.5rem;
+  animation: introFade 1.2s ease 4s forwards;
+}
+@keyframes introFade{
+  0%{opacity:1;transform:scale(1);}
+  100%{opacity:0;transform:scale(1.04);pointer-events:none;visibility:hidden;}
+}
+.intro-logo-ring{
+  width:140px;height:140px;
+  animation:spinRing 6s linear infinite, popIn .8s cubic-bezier(.34,1.56,.64,1) forwards;
+  opacity:0;
+}
+@keyframes popIn{
+  from{opacity:0;transform:scale(.4) rotate(-90deg);}
+  to{opacity:1;transform:scale(1) rotate(0deg);}
+}
+@keyframes spinRing{to{transform:rotate(360deg);}}
+.intro-wordmark{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.6rem,5vw,2.8rem);
+  letter-spacing:.35em;
+  color:var(--gold);
+  opacity:0;
+  animation:riseUp .9s ease .6s forwards;
+  text-shadow:0 0 60px rgba(201,168,76,.5);
+}
+.intro-line{
+  font-family:'Jost',sans-serif;
+  font-weight:200;font-size:.65rem;
+  letter-spacing:.6em;color:var(--muted);
+  opacity:0;
+  animation:riseUp .9s ease 1s forwards;
+}
+.intro-bar{
+  width:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  animation:barGrow .8s ease 1.4s forwards;
+}
+@keyframes barGrow{to{width:200px;}}
+@keyframes riseUp{
+  from{opacity:0;transform:translateY(18px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ══════════════════════════════════════
+   MAIN
+══════════════════════════════════════ */
+#main{opacity:0;animation:fadeMain .8s ease 4.8s forwards;}
+@keyframes fadeMain{to{opacity:1;}}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.2rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(to bottom,rgba(8,12,24,.92),transparent);
+  backdrop-filter:blur(12px);
+}
+.nav-logo{
+  font-family:'Cinzel',serif;
+  font-size:.95rem;letter-spacing:.3em;
+  color:var(--gold);
+}
+.nav-links{
+  display:flex;gap:2.5rem;list-style:none;
+}
+.nav-links a{
+  font-size:.65rem;letter-spacing:.3em;
+  color:var(--muted);text-decoration:none;
+  transition:color .3s;text-transform:uppercase;
+}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{
+  font-family:'Cinzel',serif;
+  font-size:.6rem;letter-spacing:.25em;
+  border:1px solid rgba(201,168,76,.5);
+  color:var(--gold);padding:.5rem 1.2rem;
+  text-decoration:none;
+  transition:all .3s;
+}
+.nav-cta:hover{background:var(--gold);color:var(--navy);}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+#hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  padding:8rem 2rem 4rem;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 45%,rgba(123,24,24,.2) 0%,transparent 65%),
+    radial-gradient(ellipse 100% 50% at 50% 100%,rgba(201,168,76,.05) 0%,transparent 60%),
+    var(--navy);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(201,168,76,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,168,76,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-center{position:relative;z-index:2;text-align:center;max-width:900px;}
+.hero-eyebrow{
+  font-family:'Jost',sans-serif;font-weight:200;
+  font-size:.65rem;letter-spacing:.7em;
+  color:var(--gold);display:block;margin-bottom:1.5rem;
+  opacity:0;animation:riseUp .8s ease 5.2s forwards;
+}
+.hero-h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(4rem,12vw,9rem);
+  font-weight:700;line-height:.9;
+  letter-spacing:-.02em;
+  opacity:0;animation:riseUp 1s ease 5.4s forwards;
+}
+.hero-h1 .line1{color:var(--white);display:block;}
+.hero-h1 .line2{
+  color:transparent;
+  -webkit-text-stroke:1px var(--gold);
+  display:block;font-style:italic;
+}
+.hero-tagline{
+  font-family:'Playfair Display',serif;
+  font-style:italic;font-size:clamp(1rem,2.5vw,1.35rem);
+  color:var(--muted);margin-top:1.5rem;
+  opacity:0;animation:riseUp .8s ease 5.7s forwards;
+}
+.hero-divider{
+  display:flex;align-items:center;gap:1rem;
+  justify-content:center;margin:2.5rem 0;
+  opacity:0;animation:riseUp .8s ease 5.9s forwards;
+}
+.hero-divider::before,.hero-divider::after{
+  content:'';height:1px;width:80px;
+}
+.hero-divider::before{background:linear-gradient(90deg,transparent,var(--gold));}
+.hero-divider::after{background:linear-gradient(90deg,var(--gold),transparent);}
+.cross{color:var(--gold);font-size:1rem;}
+.hero-sub{
+  font-size:.7rem;letter-spacing:.5em;
+  color:var(--muted);
+  opacity:0;animation:riseUp .8s ease 6.1s forwards;
+}
+.hero-scroll{
+  position:absolute;bottom:2.5rem;left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  opacity:0;animation:riseUp .8s ease 6.5s forwards;
+}
+.hero-scroll span{font-size:.55rem;letter-spacing:.5em;color:var(--muted);}
+.scroll-dot{
+  width:5px;height:5px;
+  border-radius:50%;background:var(--gold);
+  animation:scrollBounce 1.6s ease-in-out infinite;
+}
+@keyframes scrollBounce{
+  0%,100%{transform:translateY(0);opacity:.4;}
+  50%{transform:translateY(8px);opacity:1;}
+}
+
+/* floating particles */
+.pt{position:absolute;border-radius:50%;background:var(--gold);pointer-events:none;animation:ptFloat linear infinite;}
+@keyframes ptFloat{
+  from{transform:translateY(100vh);opacity:0;}
+  10%{opacity:.5;}90%{opacity:.2;}
+  to{transform:translateY(-50px) translateX(30px);opacity:0;}
+}
+
+/* ══════════════════════════════════════
+   SECTION GLOBALS
+══════════════════════════════════════ */
+.section-label{
+  font-family:'Jost',sans-serif;font-weight:200;
+  font-size:.6rem;letter-spacing:.7em;
+  color:var(--gold);display:block;
+  margin-bottom:.8rem;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,5vw,3.8rem);
+  font-weight:700;line-height:1.1;
+  color:var(--white);
+}
+.section-title em{font-style:italic;color:var(--gold);}
+.reveal{
+  opacity:0;transform:translateY(50px);
+  transition:opacity .9s cubic-bezier(.23,1,.32,1),transform .9s cubic-bezier(.23,1,.32,1);
+}
+.reveal.vis{opacity:1;transform:none;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.22s;}.d3{transition-delay:.34s;}.d4{transition-delay:.46s;}
+
+/* ══════════════════════════════════════
+   INTRO BAND
+══════════════════════════════════════ */
+#intro-band{
+  padding:5rem 2rem;
+  text-align:center;
+  border-top:1px solid rgba(201,168,76,.1);
+  border-bottom:1px solid rgba(201,168,76,.1);
+  background:linear-gradient(180deg,var(--navy2) 0%,var(--navy3) 100%);
+}
+.band-quote{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.3rem,3.5vw,2.2rem);
+  font-weight:400;font-style:italic;
+  max-width:750px;margin:0 auto 1.5rem;
+  line-height:1.6;color:var(--white);
+}
+.band-quote strong{color:var(--gold);font-style:normal;font-weight:700;}
+.band-author{font-size:.65rem;letter-spacing:.5em;color:var(--muted);}
+
+/* ══════════════════════════════════════
+   WATCH SECTIONS (alternate layout)
+══════════════════════════════════════ */
+.watch-section{
+  padding:6rem 0;
+  position:relative;overflow:hidden;
+}
+.watch-section:nth-child(odd){background:var(--navy2);}
+.watch-section:nth-child(even){background:var(--navy3);}
+.watch-section-inner{
+  max-width:1300px;margin:0 auto;
+  padding:0 3rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;
+  align-items:center;
+}
+.watch-section:nth-child(even) .watch-section-inner{direction:rtl;}
+.watch-section:nth-child(even) .watch-section-inner > *{direction:ltr;}
+
+/* ─── WATCH 3D DISPLAY ─── */
+.watch-display{
+  display:flex;flex-direction:column;
+  align-items:center;gap:2rem;
+  position:relative;
+}
+.watch-3d-wrap{
+  position:relative;
+  filter:drop-shadow(0 30px 60px rgba(0,0,0,.7));
+  transition:transform .6s cubic-bezier(.23,1,.32,1),filter .6s ease;
+}
+.watch-3d-wrap:hover{
+  transform:translateY(-12px) rotate(-2deg) scale(1.03);
+  filter:drop-shadow(0 50px 80px rgba(0,0,0,.8)) drop-shadow(0 0 40px rgba(201,168,76,.3));
+}
+.watch-3d-wrap svg{width:320px;height:420px;}
+
+.watch-badge-row{
+  display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;
+}
+.w-badge{
+  font-family:'Jost',sans-serif;font-size:.55rem;
+  letter-spacing:.35em;padding:.35rem .9rem;
+  border:1px solid rgba(201,168,76,.3);
+  color:var(--gold);background:rgba(201,168,76,.07);
+}
+
+/* ─── WATCH INFO ─── */
+.watch-info{}
+.w-num{
+  font-family:'Playfair Display',serif;
+  font-size:5rem;font-weight:700;
+  color:rgba(201,168,76,.08);
+  line-height:1;margin-bottom:-1rem;
+  display:block;
+}
+.w-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,4vw,3.2rem);
+  font-weight:700;color:var(--white);
+  line-height:1.1;margin-bottom:.4rem;
+}
+.w-series{
+  font-style:italic;
+  color:var(--gold);
+  font-family:'Playfair Display',serif;
+  font-size:1rem;margin-bottom:.5rem;
+}
+.w-tagline{
+  font-size:.85rem;color:var(--muted);
+  line-height:1.7;max-width:420px;
+  margin-bottom:2rem;
+  font-weight:300;
+}
+.w-divider{
+  width:50px;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  margin-bottom:2rem;
+}
+
+/* ─── FEATURE CARDS ─── */
+.features-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.8rem;
+  margin-bottom:2.5rem;
+}
+.feat-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(201,168,76,.12);
+  padding:1rem 1.1rem;
+  position:relative;
+  overflow:hidden;
+  transition:background .3s,border-color .3s;
+}
+.feat-card:hover{
+  background:rgba(201,168,76,.05);
+  border-color:rgba(201,168,76,.3);
+}
+.feat-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.feat-card:hover::before{opacity:1;}
+.feat-icon{font-size:1.3rem;display:block;margin-bottom:.5rem;}
+.feat-title{
+  font-family:'Cinzel',serif;
+  font-size:.6rem;letter-spacing:.2em;
+  color:var(--gold);margin-bottom:.35rem;
+  display:block;
+}
+.feat-desc{
+  font-size:.8rem;color:rgba(244,236,216,.7);
+  line-height:1.55;font-weight:300;
+}
+
+/* ─── PRICE + CTA ─── */
+.w-price-row{
+  display:flex;align-items:center;
+  justify-content:space-between;
+  border-top:1px solid rgba(201,168,76,.15);
+  padding-top:1.8rem;
+  flex-wrap:wrap;gap:1rem;
+}
+.w-price-block{}
+.w-price-label{
+  font-size:.55rem;letter-spacing:.4em;
+  color:var(--muted);display:block;margin-bottom:.3rem;
+}
+.w-price{
+  font-family:'Playfair Display',serif;
+  font-size:2.6rem;font-weight:700;
+  color:var(--gold);line-height:1;
+}
+.w-price sup{font-size:1.2rem;vertical-align:.6em;}
+.w-price small{font-size:.9rem;color:var(--muted);}
+.btn-primary{
+  font-family:'Cinzel',serif;
+  font-size:.6rem;letter-spacing:.25em;
+  padding:.9rem 2rem;
+  background:var(--gold);color:var(--navy);
+  border:none;cursor:pointer;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.btn-primary::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,.2);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s;
+}
+.btn-primary:hover::after{transform:scaleX(1);}
+.btn-secondary{
+  font-family:'Cinzel',serif;
+  font-size:.6rem;letter-spacing:.25em;
+  padding:.9rem 2rem;
+  background:transparent;color:var(--gold);
+  border:1px solid rgba(201,168,76,.5);cursor:pointer;
+  transition:all .3s;
+}
+.btn-secondary:hover{background:rgba(201,168,76,.08);}
+
+/* ══════════════════════════════════════
+   STATS BAND
+══════════════════════════════════════ */
+#stats{
+  padding:5rem 2rem;
+  background:linear-gradient(135deg,rgba(123,24,24,.12),var(--navy),rgba(201,168,76,.06));
+  border-top:1px solid rgba(201,168,76,.1);
+  border-bottom:1px solid rgba(201,168,76,.1);
+}
+.stats-inner{
+  max-width:900px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2rem;text-align:center;
+}
+.stat-item{}
+.stat-n{
+  font-family:'Playfair Display',serif;
+  font-size:3.5rem;font-weight:700;
+  color:var(--gold);line-height:1;display:block;
+}
+.stat-l{
+  font-size:.6rem;letter-spacing:.4em;
+  color:var(--muted);margin-top:.5rem;display:block;
+}
+
+/* ══════════════════════════════════════
+   WHY US
+══════════════════════════════════════ */
+#why{
+  padding:6rem 2rem;
+  background:var(--navy2);
+  text-align:center;
+}
+.why-header{margin-bottom:4rem;}
+.why-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(201,168,76,.1);
+  border:1px solid rgba(201,168,76,.1);
+}
+.why-card{
+  background:var(--navy2);
+  padding:3rem 2rem;
+  text-align:center;
+  transition:background .4s;
+}
+.why-card:hover{background:var(--navy3);}
+.why-icon{
+  font-size:2.5rem;
+  display:block;margin:0 auto 1.2rem;
+}
+.why-title{
+  font-family:'Cinzel',serif;
+  font-size:.75rem;letter-spacing:.25em;
+  color:var(--gold);margin-bottom:.8rem;
+}
+.why-text{
+  font-size:.88rem;line-height:1.7;
+  color:rgba(244,236,216,.6);font-weight:300;
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{
+  padding:4rem 2rem 2.5rem;
+  border-top:1px solid rgba(201,168,76,.1);
+  text-align:center;
+  background:var(--navy);
+}
+.footer-wordmark{
+  font-family:'Cinzel',serif;
+  font-size:1.4rem;letter-spacing:.35em;
+  color:var(--gold);display:block;margin-bottom:.5rem;
+}
+.footer-sub{
+  font-size:.6rem;letter-spacing:.4em;
+  color:var(--muted);margin-bottom:2.5rem;
+}
+.footer-links{
+  display:flex;gap:2rem;justify-content:center;
+  list-style:none;margin-bottom:2.5rem;flex-wrap:wrap;
+}
+.footer-links a{
+  font-size:.6rem;letter-spacing:.25em;
+  color:var(--muted);text-decoration:none;
+  transition:color .3s;
+}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-size:.6rem;letter-spacing:.2em;color:rgba(138,122,90,.3);}
+
+/* ══════════════════════════════════════
+   MOBILE
+══════════════════════════════════════ */
+@media(max-width:900px){
+  .watch-section-inner{grid-template-columns:1fr;gap:3rem;}
+  .watch-section:nth-child(even) .watch-section-inner{direction:ltr;}
+  .watch-3d-wrap svg{width:240px;height:320px;}
+  .stats-inner{grid-template-columns:repeat(2,1fr);}
+  .why-grid{grid-template-columns:1fr;}
+  nav .nav-links,.nav-cta{display:none;}
+  .features-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ INTRO ══ -->
+<div id="intro">
+  <svg class="intro-logo-ring" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="ig" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#F0D080"/><stop offset="100%" style="stop-color:#8B6914"/>
+      </linearGradient>
+    </defs>
+    <!-- gear ring -->
+    <circle cx="80" cy="80" r="70" fill="none" stroke="url(#ig)" stroke-width="2.5" stroke-dasharray="8 4"/>
+    <!-- teeth 12 -->
+    <path d="M80 4 L84 18 L76 18Z" fill="url(#ig)"/>
+    <path d="M80 156 L84 142 L76 142Z" fill="url(#ig)"/>
+    <path d="M4 80 L18 84 L18 76Z" fill="url(#ig)"/>
+    <path d="M156 80 L142 84 L142 76Z" fill="url(#ig)"/>
+    <path d="M24 24 L35 35 L28 42Z" fill="url(#ig)"/>
+    <path d="M136 24 L125 35 L132 42Z" fill="url(#ig)"/>
+    <path d="M24 136 L35 125 L28 118Z" fill="url(#ig)"/>
+    <path d="M136 136 L125 125 L132 118Z" fill="url(#ig)"/>
+    <!-- face -->
+    <circle cx="80" cy="80" r="55" fill="#7B1818"/>
+    <circle cx="80" cy="80" r="53" fill="none" stroke="url(#ig)" stroke-width="1"/>
+    <text x="80" y="45" font-family="Cinzel" font-size="10" fill="#C9A84C" text-anchor="middle">XII</text>
+    <text x="80" y="122" font-family="Cinzel" font-size="10" fill="#C9A84C" text-anchor="middle">VI</text>
+    <text x="35" y="84" font-family="Cinzel" font-size="10" fill="#C9A84C" text-anchor="middle">IX</text>
+    <text x="125" y="84" font-family="Cinzel" font-size="10" fill="#C9A84C" text-anchor="middle">III</text>
+    <line x1="80" y1="80" x2="80" y2="45" stroke="#F0D080" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="80" y1="80" x2="104" y2="80" stroke="#F0D080" stroke-width="2" stroke-linecap="round"/>
+    <rect x="77" y="96" width="6" height="2" fill="white"/>
+    <rect x="79" y="94" width="2" height="6" fill="white"/>
+    <circle cx="80" cy="80" r="3" fill="#F0D080"/>
+    <rect x="78" y="14" width="4" height="6" rx="1.5" fill="url(#ig)"/>
+  </svg>
+  <div class="intro-wordmark">RELOJES SUIZA</div>
+  <div class="intro-line">RELOJERÍA SUIZA · EST. 1898</div>
+  <div class="intro-bar"></div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<div id="main">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">RELOJES SUIZA</div>
+  <ul class="nav-links">
+    <li><a href="#watches">Colección</a></li>
+    <li><a href="#why">Nosotros</a></li>
+    <li><a href="#stats">Legado</a></li>
+  </ul>
+  <a href="#watches" class="nav-cta">Ver Relojes</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div id="pts"></div>
+  <div class="hero-center">
+    <span class="hero-eyebrow">Relojería Suiza · Fundada en 1898</span>
+    <h1 class="hero-h1">
+      <span class="line1">RELOJES</span>
+      <span class="line2">SUIZA</span>
+    </h1>
+    <p class="hero-tagline">Cada segundo que pasa, llevás una obra de arte en la muñeca</p>
+    <div class="hero-divider"><span class="cross">✛</span></div>
+    <p class="hero-sub">Fabricados a mano en Ginebra · Precisión Suiza garantizada</p>
+  </div>
+  <div class="hero-scroll">
+    <span>DESCUBRIR</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- BAND -->
+<section id="intro-band">
+  <p class="band-quote reveal">
+    "Un reloj Suiza no es solo un objeto para ver la hora —<br>
+    es <strong>una pieza que se hereda</strong>, una historia que se lleva puesta"
+  </p>
+  <p class="band-author reveal d1">— MAESTROS RELOJEROS SUIZOS DESDE 1898</p>
+</section>
+
+<!-- ════════════════════════════════
+     WATCH 1 — SWISS IMPERIALE
+════════════════════════════════ -->
+<section class="watch-section" id="watches">
+  <div class="watch-section-inner">
+
+    <!-- 3D Watch -->
+    <div class="watch-display reveal">
+      <div class="watch-3d-wrap">
+        <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Gold gradients -->
+            <linearGradient id="goldCase1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#F5E098"/>
+              <stop offset="30%" style="stop-color:#C9A84C"/>
+              <stop offset="65%" style="stop-color:#8B6914"/>
+              <stop offset="100%" style="stop-color:#C9A84C"/>
+            </linearGradient>
+            <linearGradient id="goldLug1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#F0D080"/>
+              <stop offset="100%" style="stop-color:#7A5C1E"/>
+            </linearGradient>
+            <radialGradient id="dialRed" cx="40%" cy="35%" r="65%">
+              <stop offset="0%" style="stop-color:#A01818"/>
+              <stop offset="60%" style="stop-color:#6B0E0E"/>
+              <stop offset="100%" style="stop-color:#3D0808"/>
+            </radialGradient>
+            <radialGradient id="crystalShine1" cx="35%" cy="30%" r="55%">
+              <stop offset="0%" style="stop-color:rgba(255,255,255,0.18)"/>
+              <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+            </radialGradient>
+            <linearGradient id="strapTop" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#1A0A00"/>
+              <stop offset="40%" style="stop-color:#3D1A05"/>
+              <stop offset="60%" style="stop-color:#3D1A05"/>
+              <stop offset="100%" style="stop-color:#1A0A00"/>
+            </linearGradient>
+            <linearGradient id="strapBot" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#120800"/>
+              <stop offset="40%" style="stop-color:#2A1200"/>
+              <stop offset="60%" style="stop-color:#2A1200"/>
+              <stop offset="100%" style="stop-color:#120800"/>
+            </linearGradient>
+            <filter id="shadow1" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="rgba(0,0,0,0.8)"/>
+            </filter>
+          </defs>
+
+          <!-- STRAP TOP -->
+          <rect x="118" y="50" width="84" height="100" rx="6" fill="url(#strapTop)"/>
+          <rect x="124" y="52" width="72" height="96" rx="4" fill="none" stroke="rgba(255,180,80,0.15)" stroke-width="1"/>
+          <!-- strap stitching -->
+          <line x1="130" y1="58" x2="130" y2="142" stroke="rgba(180,120,30,0.3)" stroke-width=".5" stroke-dasharray="4 3"/>
+          <line x1="190" y1="58" x2="190" y2="142" stroke="rgba(180,120,30,0.3)" stroke-width=".5" stroke-dasharray="4 3"/>
+          <!-- strap holes -->
+          <ellipse cx="160" cy="85" rx="3" ry="3" fill="#0A0400"/>
+          <ellipse cx="160" cy="97" rx="3" ry="3" fill="#0A0400"/>
+          <ellipse cx="160" cy="109" rx="3" ry="3" fill="#0A0400"/>
+          <ellipse cx="160" cy="121" rx="3" ry="3" fill="#0A0400"/>
+
+          <!-- WATCH CASE shadow -->
+          <ellipse cx="162" cy="226" rx="85" ry="12" fill="rgba(0,0,0,0.5)"/>
+
+          <!-- LUGS top-left -->
+          <path d="M108 148 Q98 145 96 155 L98 170 Q100 175 108 172Z" fill="url(#goldLug1)"/>
+          <!-- Lugs top-right -->
+          <path d="M212 148 Q222 145 224 155 L222 170 Q220 175 212 172Z" fill="url(#goldLug1)"/>
+          <!-- Lugs bottom-left -->
+          <path d="M108 252 Q98 255 96 265 L98 278 Q100 283 108 280Z" fill="url(#goldLug1)"/>
+          <!-- Lugs bottom-right -->
+          <path d="M212 252 Q222 255 224 265 L222 278 Q220 283 212 280Z" fill="url(#goldLug1)"/>
+
+          <!-- MAIN CASE -->
+          <rect x="98" y="145" width="124" height="138" rx="28" fill="url(#goldCase1)" filter="url(#shadow1)"/>
+          <!-- Case bevel inner -->
+          <rect x="103" y="150" width="114" height="128" rx="24" fill="none" stroke="rgba(255,240,160,0.4)" stroke-width="1.5"/>
+          <!-- Case edge dark -->
+          <rect x="99" y="146" width="122" height="136" rx="27" fill="none" stroke="rgba(100,70,10,0.6)" stroke-width="1"/>
+
+          <!-- DIAL RING (bezel) -->
+          <circle cx="160" cy="214" r="54" fill="url(#goldCase1)"/>
+          <circle cx="160" cy="214" r="51" fill="#2A0808"/>
+          <circle cx="160" cy="214" r="50" fill="url(#dialRed)"/>
+
+          <!-- Minute track -->
+          <circle cx="160" cy="214" r="46" fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="0.5" stroke-dasharray="2 4"/>
+
+          <!-- Hour markers (12 positions) -->
+          <line x1="160" y1="167" x2="160" y2="174" stroke="#F0D080" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="160" y1="254" x2="160" y2="261" stroke="#F0D080" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="113" y1="214" x2="120" y2="214" stroke="#F0D080" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="200" y1="214" x2="207" y2="214" stroke="#F0D080" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Minor markers -->
+          <line x1="173" y1="168.5" x2="175.5" y2="173" stroke="#C9A84C" stroke-width="1" stroke-linecap="round"/>
+          <line x1="183" y1="171" x2="185" y2="175" stroke="#C9A84C" stroke-width="1" stroke-linecap="round"/>
+          <line x1="191" y1="177" x2="188" y2="181" stroke="#C9A84C" stroke-width="1" stroke-linecap="round"/>
+          <line x1="196" y1="186" x2="192" y2="188" stroke="#C9A84C" stroke-width="1" stroke-linecap="round"/>
+          <line x1="147" y1="168.5" x2="144.5" y2="173" stroke="#C9A84C" stroke-width="1" stroke-linecap="round"/>
+          <line x1="137" y1="171" x2="135" y2="175" stroke="#C9A84C" stroke-width="1" stroke-linecap="round"/>
+          <line x1="129" y1="177" x2="132" y2="181" stroke="#C9A84C" stroke-width="1" stroke-linecap="round"/>
+          <line x1="124" y1="186" x2="128" y2="188" stroke="#C9A84C" stroke-width="1" stroke-linecap="round"/>
+
+          <!-- Roman Numerals -->
+          <text x="160" y="181" font-family="Cinzel" font-size="9" fill="#E8C860" text-anchor="middle" font-weight="700">XII</text>
+          <text x="160" y="252" font-family="Cinzel" font-size="9" fill="#E8C860" text-anchor="middle" font-weight="700">VI</text>
+          <text x="121" y="218" font-family="Cinzel" font-size="9" fill="#E8C860" text-anchor="middle" font-weight="700">IX</text>
+          <text x="200" y="218" font-family="Cinzel" font-size="9" fill="#E8C860" text-anchor="middle" font-weight="700">III</text>
+
+          <!-- Brand text -->
+          <text x="160" y="201" font-family="Cinzel" font-size="5" fill="rgba(240,208,128,0.7)" text-anchor="middle" letter-spacing="2">RELOJES</text>
+          <text x="160" y="208" font-family="Cinzel" font-size="8" fill="#F0D080" text-anchor="middle" letter-spacing="3" font-weight="700">SUIZA</text>
+
+          <!-- Swiss cross -->
+          <rect x="156" y="224" width="8" height="2.5" fill="white"/>
+          <rect x="158.75" y="221.5" width="2.5" height="7.5" fill="white"/>
+
+          <!-- HOUR HAND -->
+          <g id="hh1" style="transform-origin:160px 214px; animation:hRot 43200s linear infinite">
+            <path d="M157 214 L160 178 L163 214Z" fill="#F0D080"/>
+            <path d="M158 214 L160 185 L162 214Z" fill="#EDD98A"/>
+          </g>
+          <!-- MINUTE HAND -->
+          <g id="mh1" style="transform-origin:160px 214px; animation:mRot 3600s linear infinite">
+            <path d="M158.5 214 L160 169 L161.5 214Z" fill="#F0D080"/>
+          </g>
+          <!-- SECOND HAND -->
+          <g id="sh1" style="transform-origin:160px 214px; animation:sRot1 60s linear infinite">
+            <line x1="160" y1="222" x2="160" y2="169" stroke="#C0392B" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="160" cy="220" r="3" fill="#C0392B"/>
+          </g>
+          <!-- Center cap -->
+          <circle cx="160" cy="214" r="4.5" fill="url(#goldCase1)"/>
+          <circle cx="160" cy="214" r="2" fill="#3D0808"/>
+
+          <!-- Crystal reflection -->
+          <ellipse cx="143" cy="197" rx="18" ry="10" fill="url(#crystalShine1)"/>
+
+          <!-- CROWN -->
+          <rect x="221" y="208" width="12" height="12" rx="3" fill="url(#goldCase1)"/>
+          <line x1="224" y1="211" x2="224" y2="217" stroke="rgba(100,70,10,0.5)" stroke-width=".5"/>
+          <line x1="227" y1="211" x2="227" y2="217" stroke="rgba(100,70,10,0.5)" stroke-width=".5"/>
+          <line x1="230" y1="211" x2="230" y2="217" stroke="rgba(100,70,10,0.5)" stroke-width=".5"/>
+
+          <!-- STRAP BOTTOM -->
+          <rect x="118" y="284" width="84" height="90" rx="6" fill="url(#strapBot)"/>
+          <rect x="124" y="286" width="72" height="86" rx="4" fill="none" stroke="rgba(255,180,80,0.1)" stroke-width="1"/>
+          <line x1="130" y1="290" x2="130" y2="368" stroke="rgba(180,120,30,0.3)" stroke-width=".5" stroke-dasharray="4 3"/>
+          <line x1="190" y1="290" x2="190" y2="368" stroke="rgba(180,120,30,0.3)" stroke-width=".5" stroke-dasharray="4 3"/>
+          <!-- buckle -->
+          <rect x="146" y="345" width="28" height="18" rx="4" fill="url(#goldCase1)"/>
+          <rect x="150" y="349" width="20" height="10" rx="2" fill="none" stroke="rgba(80,50,5,0.8)" stroke-width="1"/>
+          <line x1="159" y1="347" x2="159" y2="365" stroke="rgba(80,50,5,0.6)" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="watch-badge-row">
+        <div class="w-badge">✦ EDICIÓN LIMITADA</div>
+        <div class="w-badge">250 PIEZAS</div>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="watch-info">
+      <span class="w-num reveal">01</span>
+      <h2 class="w-name reveal d1">Swiss Imperiale</h2>
+      <p class="w-series reveal d1">Royal Tourbillon Collection</p>
+      <p class="w-tagline reveal d2">Pensado para quienes aprecian lo mejor de lo mejor. El Swiss Imperiale es el reloj más exclusivo de nuestra colección — hecho a mano durante más de 6 meses por un solo artesano.</p>
+      <div class="w-divider reveal d2"></div>
+
+      <div class="features-grid reveal d3">
+        <div class="feat-card">
+          <span class="feat-icon">⚙️</span>
+          <span class="feat-title">FUNCIONA SOLO</span>
+          <p class="feat-desc">No necesita batería. Se da cuerda solo con el movimiento de tu muñeca al caminar y dura <strong>3 días sin usarlo</strong>.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">💎</span>
+          <span class="feat-title">CRISTAL INROMPIBLE</span>
+          <p class="feat-desc">El vidrio es de zafiro — el mismo material que las piedras preciosas. <strong>No se raya ni se rompe</strong> en el uso del día a día.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🏅</span>
+          <span class="feat-title">ORO REAL</span>
+          <p class="feat-desc">Los números, agujas y detalles están bañados en <strong>oro de 18 quilates</strong>. No se pone negro ni pierde color con el tiempo.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">💧</span>
+          <span class="feat-title">RESISTENTE AL AGUA</span>
+          <p class="feat-desc">Puedes lavarte las manos, que te llueva encima o nadar en la piscina — <strong>hasta 50 metros bajo el agua</strong> sin ningún problema.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🐊</span>
+          <span class="feat-title">CORREA DE LUJO</span>
+          <p class="feat-desc">La correa es de <strong>cuero de cocodrilo genuino</strong>, suave y duradera. Se amolda perfectamente a la muñeca con el uso.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🔴</span>
+          <span class="feat-title">ESFERA ROJA ÚNICA</span>
+          <p class="feat-desc">El fondo rojo es lacado a mano en tres capas. <strong>Cada reloj sale diferente</strong>, ninguno es idéntico a otro en el mundo.</p>
+        </div>
+      </div>
+
+      <div class="w-price-row reveal d4">
+        <div class="w-price-block">
+          <span class="w-price-label">PRECIO DE VENTA</span>
+          <div class="w-price"><sup>$</sup>4.850 <small>USD</small></div>
+        </div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+          <button class="btn-primary">COMPRAR AHORA</button>
+          <button class="btn-secondary">MÁS INFO</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     WATCH 2 — SWISS CHRONOS
+════════════════════════════════ -->
+<section class="watch-section">
+  <div class="watch-section-inner">
+
+    <div class="watch-display reveal">
+      <div class="watch-3d-wrap">
+        <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="steelCase" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#F0F0F4"/>
+              <stop offset="30%" style="stop-color:#A8A8B4"/>
+              <stop offset="65%" style="stop-color:#606070"/>
+              <stop offset="100%" style="stop-color:#A8A8B4"/>
+            </linearGradient>
+            <linearGradient id="steelLug" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#E0E0E8"/>
+              <stop offset="100%" style="stop-color:#404050"/>
+            </linearGradient>
+            <radialGradient id="dialBlack" cx="40%" cy="35%" r="65%">
+              <stop offset="0%" style="stop-color:#1a1a22"/>
+              <stop offset="60%" style="stop-color:#0D0D14"/>
+              <stop offset="100%" style="stop-color:#060608"/>
+            </radialGradient>
+            <radialGradient id="crystalShine2" cx="35%" cy="30%" r="55%">
+              <stop offset="0%" style="stop-color:rgba(255,255,255,0.15)"/>
+              <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+            </radialGradient>
+            <linearGradient id="strapRubber" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#0A0A0A"/>
+              <stop offset="40%" style="stop-color:#1A1A1A"/>
+              <stop offset="60%" style="stop-color:#1A1A1A"/>
+              <stop offset="100%" style="stop-color:#0A0A0A"/>
+            </linearGradient>
+            <filter id="shadow2">
+              <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="rgba(0,0,0,0.8)"/>
+            </filter>
+          </defs>
+
+          <!-- STRAP TOP - rubber -->
+          <rect x="115" y="48" width="90" height="104" rx="8" fill="url(#strapRubber)"/>
+          <rect x="120" y="52" width="80" height="98" rx="6" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          <!-- rubber texture lines -->
+          <line x1="122" y1="60" x2="198" y2="60" stroke="rgba(255,255,255,.04)" stroke-width="1.5"/>
+          <line x1="122" y1="68" x2="198" y2="68" stroke="rgba(255,255,255,.04)" stroke-width="1.5"/>
+          <line x1="122" y1="76" x2="198" y2="76" stroke="rgba(255,255,255,.04)" stroke-width="1.5"/>
+          <line x1="122" y1="84" x2="198" y2="84" stroke="rgba(255,255,255,.04)" stroke-width="1.5"/>
+          <line x1="122" y1="92" x2="198" y2="92" stroke="rgba(255,255,255,.04)" stroke-width="1.5"/>
+          <line x1="122" y1="100" x2="198" y2="100" stroke="rgba(255,255,255,.04)" stroke-width="1.5"/>
+          <ellipse cx="160" cy="115" rx="3.5" ry="3.5" fill="#0A0A0A" stroke="rgba(255,255,255,.1)" stroke-width=".5"/>
+          <ellipse cx="160" cy="126" rx="3.5" ry="3.5" fill="#0A0A0A" stroke="rgba(255,255,255,.1)" stroke-width=".5"/>
+          <ellipse cx="160" cy="137" rx="3.5" ry="3.5" fill="#0A0A0A" stroke="rgba(255,255,255,.1)" stroke-width=".5"/>
+
+          <!-- shadow -->
+          <ellipse cx="162" cy="228" rx="86" ry="12" fill="rgba(0,0,0,.5)"/>
+
+          <!-- LUGS -->
+          <path d="M105 150 Q94 147 93 158 L95 173 Q97 178 105 175Z" fill="url(#steelLug)"/>
+          <path d="M215 150 Q226 147 227 158 L225 173 Q223 178 215 175Z" fill="url(#steelLug)"/>
+          <path d="M105 254 Q94 257 93 268 L95 281 Q97 286 105 283Z" fill="url(#steelLug)"/>
+          <path d="M215 254 Q226 257 227 268 L225 281 Q223 286 215 283Z" fill="url(#steelLug)"/>
+
+          <!-- CASE -->
+          <rect x="95" y="147" width="130" height="140" rx="30" fill="url(#steelCase)" filter="url(#shadow2)"/>
+          <rect x="100" y="152" width="120" height="130" rx="26" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+          <rect x="96" y="148" width="128" height="138" rx="29" fill="none" stroke="rgba(60,60,70,0.5)" stroke-width="1"/>
+
+          <!-- BEZEL with tachymeter markings -->
+          <circle cx="160" cy="217" r="57" fill="url(#steelCase)"/>
+          <!-- tachymeter text arc simulation -->
+          <circle cx="160" cy="217" r="54" fill="none" stroke="rgba(200,200,210,0.2)" stroke-width="3"/>
+          <text x="160" y="167" font-family="Jost" font-size="5" fill="rgba(200,200,210,0.5)" text-anchor="middle">TACHYMETER</text>
+
+          <!-- DIAL -->
+          <circle cx="160" cy="217" r="50" fill="#080808"/>
+          <circle cx="160" cy="217" r="48" fill="url(#dialBlack)"/>
+
+          <!-- Subdial (chronograph 30min counter) at 12 -->
+          <circle cx="160" cy="192" r="9" fill="#0F0F18" stroke="rgba(200,200,220,.15)" stroke-width=".5"/>
+          <!-- Subdial (running seconds) at 9 -->
+          <circle cx="135" cy="217" r="9" fill="#0F0F18" stroke="rgba(200,200,220,.15)" stroke-width=".5"/>
+          <!-- Subdial (hour counter) at 6 -->
+          <circle cx="160" cy="242" r="9" fill="#0F0F18" stroke="rgba(200,200,220,.15)" stroke-width=".5"/>
+
+          <!-- Hour markers with lume -->
+          <rect x="158" y="171" width="4" height="8" rx="1" fill="#4A90D9"/>
+          <rect x="158" y="256" width="4" height="8" rx="1" fill="#B0B0C0"/>
+          <rect x="115" y="215" width="8" height="4" rx="1" fill="#B0B0C0"/>
+          <rect x="197" y="215" width="8" height="4" rx="1" fill="#B0B0C0"/>
+          <!-- Minor markers -->
+          <line x1="180.5" y1="173" x2="182" y2="177" stroke="#606080" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="190" y1="179" x2="188" y2="183" stroke="#606080" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="196" y1="189" x2="192" y2="191" stroke="#606080" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="139.5" y1="173" x2="138" y2="177" stroke="#606080" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="130" y1="179" x2="132" y2="183" stroke="#606080" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="124" y1="189" x2="128" y2="191" stroke="#606080" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- Date window at 3 -->
+          <rect x="182" y="213" width="14" height="10" rx="1" fill="#F0F0F0"/>
+          <text x="189" y="221" font-family="Jost" font-size="6" fill="#111" text-anchor="middle" font-weight="500">08</text>
+
+          <!-- Brand -->
+          <text x="160" y="203" font-family="Cinzel" font-size="5" fill="rgba(180,180,200,0.5)" text-anchor="middle" letter-spacing="2">RELOJES</text>
+          <text x="160" y="211" font-family="Cinzel" font-size="7" fill="#C8C8CC" text-anchor="middle" letter-spacing="2.5" font-weight="700">SUIZA</text>
+          <text x="160" y="222" font-family="Jost" font-size="4" fill="rgba(150,150,170,0.4)" text-anchor="middle" letter-spacing="1">AUTOMATIC CHRONOGRAPH</text>
+
+          <!-- Swiss cross -->
+          <rect x="156.5" y="229" width="7" height="2" fill="rgba(255,255,255,0.6)"/>
+          <rect x="159" y="227" width="2" height="6" fill="rgba(255,255,255,0.6)"/>
+
+          <!-- HOUR HAND -->
+          <g style="transform-origin:160px 217px; animation:hRot2 43200s linear infinite">
+            <path d="M158 217 L160 181 L162 217Z" fill="#E0E0E8"/>
+            <path d="M158.5 217 L160 188 L161.5 217Z" fill="#4A90D9" opacity=".7"/>
+          </g>
+          <!-- MINUTE HAND -->
+          <g style="transform-origin:160px 217px; animation:mRot2 3600s linear infinite">
+            <path d="M159 217 L160 171 L161 217Z" fill="#E0E0E8"/>
+          </g>
+          <!-- Chrono hand red -->
+          <g style="transform-origin:160px 217px; animation:sRot2 60s linear infinite">
+            <line x1="160" y1="226" x2="160" y2="170" stroke="#E03030" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="160" cy="224" r="3.5" fill="#E03030"/>
+          </g>
+
+          <!-- Crystal reflection -->
+          <ellipse cx="143" cy="200" rx="18" ry="10" fill="url(#crystalShine2)"/>
+
+          <!-- Center -->
+          <circle cx="160" cy="217" r="4.5" fill="url(#steelCase)"/>
+          <circle cx="160" cy="217" r="2" fill="#0A0A0A"/>
+
+          <!-- CROWN -->
+          <rect x="222" y="211" width="13" height="12" rx="3" fill="url(#steelCase)"/>
+          <line x1="225" y1="214" x2="225" y2="220" stroke="rgba(60,60,70,.5)" stroke-width=".5"/>
+          <line x1="228" y1="214" x2="228" y2="220" stroke="rgba(60,60,70,.5)" stroke-width=".5"/>
+          <line x1="231" y1="214" x2="231" y2="220" stroke="rgba(60,60,70,.5)" stroke-width=".5"/>
+
+          <!-- STRAP BOTTOM -->
+          <rect x="115" y="287" width="90" height="88" rx="8" fill="url(#strapRubber)"/>
+          <line x1="122" y1="295" x2="198" y2="295" stroke="rgba(255,255,255,.04)" stroke-width="1.5"/>
+          <line x1="122" y1="303" x2="198" y2="303" stroke="rgba(255,255,255,.04)" stroke-width="1.5"/>
+          <line x1="122" y1="311" x2="198" y2="311" stroke="rgba(255,255,255,.04)" stroke-width="1.5"/>
+          <!-- steel buckle -->
+          <rect x="144" y="342" width="32" height="20" rx="4" fill="url(#steelCase)"/>
+          <rect x="148" y="346" width="24" height="12" rx="2" fill="none" stroke="rgba(60,60,70,.8)" stroke-width="1"/>
+          <line x1="159" y1="344" x2="159" y2="362" stroke="rgba(60,60,70,.5)" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="watch-badge-row">
+        <div class="w-badge" style="border-color:rgba(74,144,217,.4);color:#4A90D9">✦ BEST SELLER</div>
+        <div class="w-badge">CRONÓGRAFO</div>
+      </div>
+    </div>
+
+    <div class="watch-info">
+      <span class="w-num reveal">02</span>
+      <h2 class="w-name reveal d1">Swiss Chronos</h2>
+      <p class="w-series reveal d1" style="color:#4A90D9">Pilot Chronograph Series</p>
+      <p class="w-tagline reveal d2">Diseñado para personas activas que necesitan un reloj que aguante todo. El Swiss Chronos puede medir tiempos como un cronómetro, tiene fecha y se ve igual de bien en la oficina que en una aventura.</p>
+      <div class="w-divider reveal d2" style="background:linear-gradient(90deg,#4A90D9,transparent)"></div>
+
+      <div class="features-grid reveal d3">
+        <div class="feat-card">
+          <span class="feat-icon">⏱️</span>
+          <span class="feat-title">MIDE TIEMPOS</span>
+          <p class="feat-desc">Tiene función de cronómetro integrado. Pulsa un botón y <strong>mide exactamente cuánto tarda</strong> lo que quieras — una vuelta, una reunión, lo que sea.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🛡️</span>
+          <span class="feat-title">CAJA TITANIO</span>
+          <p class="feat-desc">El titanio es el material más liviano y resistente que existe. <strong>Casi no se siente en la muñeca</strong>, pero es más fuerte que el acero.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🌙</span>
+          <span class="feat-title">BRILLA EN LA OSCURIDAD</span>
+          <p class="feat-desc">Los números y las agujas tienen un material especial que <strong>se carga con la luz y brilla de noche</strong>. Ves la hora perfectamente a oscuras.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">📅</span>
+          <span class="feat-title">FECHA AUTOMÁTICA</span>
+          <p class="feat-desc">La ventanita a las 3 te muestra el <strong>día del mes que es hoy</strong>. Cambia sola a la medianoche, nunca la tenés que actualizar manualmente.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🏊</span>
+          <span class="feat-title">AGUANTA EN EL AGUA</span>
+          <p class="feat-desc">Certificado para <strong>bucear hasta 200 metros</strong>. Podés nadar, surf, ducharte y no pasa nada. Hecho para no sacártelo nunca.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🤿</span>
+          <span class="feat-title">CORREA DE GOMA</span>
+          <p class="feat-desc">La pulsera es de caucho de alta calidad — <strong>no absorbe el sudor</strong>, no huele mal y dura años con uso intenso diario.</p>
+        </div>
+      </div>
+
+      <div class="w-price-row reveal d4">
+        <div class="w-price-block">
+          <span class="w-price-label">PRECIO DE VENTA</span>
+          <div class="w-price" style="color:#4A90D9"><sup>$</sup>2.990 <small style="color:var(--muted)">USD</small></div>
+        </div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+          <button class="btn-primary" style="background:#4A90D9;color:#fff">COMPRAR AHORA</button>
+          <button class="btn-secondary" style="color:#4A90D9;border-color:rgba(74,144,217,.5)">MÁS INFO</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     WATCH 3 — SWISS AURUM
+════════════════════════════════ -->
+<section class="watch-section">
+  <div class="watch-section-inner">
+
+    <div class="watch-display reveal">
+      <div class="watch-3d-wrap">
+        <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="goldCase3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#FFED9A"/>
+              <stop offset="25%" style="stop-color:#D4AF37"/>
+              <stop offset="60%" style="stop-color:#9A7C18"/>
+              <stop offset="100%" style="stop-color:#D4AF37"/>
+            </linearGradient>
+            <linearGradient id="goldLug3" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#FFED9A"/>
+              <stop offset="100%" style="stop-color:#6A4E10"/>
+            </linearGradient>
+            <radialGradient id="dialCream" cx="40%" cy="35%" r="65%">
+              <stop offset="0%" style="stop-color:#F5E8C8"/>
+              <stop offset="60%" style="stop-color:#D4C08A"/>
+              <stop offset="100%" style="stop-color:#A88C50"/>
+            </radialGradient>
+            <radialGradient id="crystalShine3" cx="35%" cy="30%" r="55%">
+              <stop offset="0%" style="stop-color:rgba(255,255,255,0.22)"/>
+              <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+            </radialGradient>
+            <linearGradient id="strapGold" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#1A1200"/>
+              <stop offset="40%" style="stop-color:#3D2A05"/>
+              <stop offset="60%" style="stop-color:#3D2A05"/>
+              <stop offset="100%" style="stop-color:#1A1200"/>
+            </linearGradient>
+            <radialGradient id="moonGrad" cx="35%" cy="40%" r="60%">
+              <stop offset="0%" style="stop-color:#E8D480"/>
+              <stop offset="100%" style="stop-color:#8A6A20"/>
+            </radialGradient>
+            <filter id="shadow3">
+              <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="rgba(0,0,0,0.8)"/>
+            </filter>
+          </defs>
+
+          <!-- STRAP TOP - croco leather -->
+          <rect x="116" y="46" width="88" height="106" rx="7" fill="url(#strapGold)"/>
+          <rect x="121" y="50" width="78" height="100" rx="5" fill="none" stroke="rgba(255,200,80,0.15)" stroke-width="1"/>
+          <!-- croco pattern -->
+          <path d="M125 58 Q135 54 145 58 Q155 54 165 58 Q175 54 185 58 Q195 54 199 58" fill="none" stroke="rgba(180,130,30,.2)" stroke-width="1"/>
+          <path d="M125 66 Q135 62 145 66 Q155 62 165 66 Q175 62 185 66 Q195 62 199 66" fill="none" stroke="rgba(180,130,30,.2)" stroke-width="1"/>
+          <path d="M125 74 Q135 70 145 74 Q155 70 165 74 Q175 70 185 74 Q195 70 199 74" fill="none" stroke="rgba(180,130,30,.2)" stroke-width="1"/>
+          <path d="M125 82 Q135 78 145 82 Q155 78 165 82 Q175 78 185 82 Q195 78 199 82" fill="none" stroke="rgba(180,130,30,.2)" stroke-width="1"/>
+          <path d="M125 90 Q135 86 145 90 Q155 86 165 90 Q175 86 185 90 Q195 86 199 90" fill="none" stroke="rgba(180,130,30,.2)" stroke-width="1"/>
+          <path d="M125 98 Q135 94 145 98 Q155 94 165 98 Q175 94 185 98 Q195 94 199 98" fill="none" stroke="rgba(180,130,30,.2)" stroke-width="1"/>
+          <!-- holes -->
+          <ellipse cx="160" cy="114" rx="3" ry="3" fill="#0A0700"/>
+          <ellipse cx="160" cy="125" rx="3" ry="3" fill="#0A0700"/>
+          <ellipse cx="160" cy="136" rx="3" ry="3" fill="#0A0700"/>
+
+          <!-- shadow -->
+          <ellipse cx="162" cy="226" rx="86" ry="12" fill="rgba(0,0,0,.5)"/>
+
+          <!-- LUGS -->
+          <path d="M106 148 Q95 145 93 156 L95 171 Q97 176 106 173Z" fill="url(#goldLug3)"/>
+          <path d="M214 148 Q225 145 227 156 L225 171 Q223 176 214 173Z" fill="url(#goldLug3)"/>
+          <path d="M106 251 Q95 254 93 265 L95 278 Q97 283 106 280Z" fill="url(#goldLug3)"/>
+          <path d="M214 251 Q225 254 227 265 L225 278 Q223 283 214 280Z" fill="url(#goldLug3)"/>
+
+          <!-- CASE - rounder, more dress watch -->
+          <rect x="96" y="145" width="128" height="138" rx="32" fill="url(#goldCase3)" filter="url(#shadow3)"/>
+          <rect x="101" y="150" width="118" height="128" rx="28" fill="none" stroke="rgba(255,240,150,0.45)" stroke-width="2"/>
+          <rect x="97" y="146" width="126" height="136" rx="31" fill="none" stroke="rgba(90,60,5,.5)" stroke-width="1"/>
+
+          <!-- BEZEL - fluted decoration -->
+          <circle cx="160" cy="214" r="56" fill="url(#goldCase3)"/>
+          <!-- fluted lines -->
+          <circle cx="160" cy="214" r="55" fill="none" stroke="rgba(255,240,100,0.3)" stroke-width=".5" stroke-dasharray="5 3"/>
+          <circle cx="160" cy="214" r="52" fill="none" stroke="rgba(90,60,5,.3)" stroke-width=".5"/>
+
+          <!-- DIAL -->
+          <circle cx="160" cy="214" r="49" fill="url(#dialCream)"/>
+          <!-- Guilloche texture suggestion -->
+          <circle cx="160" cy="214" r="46" fill="none" stroke="rgba(180,140,60,.2)" stroke-width=".5"/>
+          <circle cx="160" cy="214" r="42" fill="none" stroke="rgba(180,140,60,.15)" stroke-width=".5"/>
+          <circle cx="160" cy="214" r="38" fill="none" stroke="rgba(180,140,60,.1)" stroke-width=".5"/>
+
+          <!-- MOON PHASE window -->
+          <ellipse cx="160" cy="237" rx="14" ry="8" fill="#0A0814" stroke="url(#goldCase3)" stroke-width="1.5"/>
+          <!-- stars -->
+          <circle cx="151" cy="237" r=".8" fill="#F0E060"/>
+          <circle cx="155" cy="234" r=".6" fill="#F0E060"/>
+          <circle cx="168" cy="235" r=".7" fill="#F0E060"/>
+          <circle cx="164" cy="239" r=".5" fill="#F0E060"/>
+          <!-- moon -->
+          <circle cx="161" cy="237" r="5" fill="url(#moonGrad)"/>
+          <circle cx="159" cy="235" r="3" fill="#0A0814"/>
+
+          <!-- Hour markers - applied gold batons -->
+          <rect x="157.5" y="168" width="5" height="9" rx="1" fill="url(#goldCase3)"/>
+          <rect x="157.5" y="251" width="5" height="9" rx="1" fill="url(#goldCase3)"/>
+          <rect x="114" y="211.5" width="9" height="5" rx="1" fill="url(#goldCase3)"/>
+          <rect x="197" y="211.5" width="9" height="5" rx="1" fill="url(#goldCase3)"/>
+          <!-- quarter markers -->
+          <rect x="178.5" y="170.5" width="3.5" height="7" rx="1" fill="url(#goldCase3)" transform="rotate(30 160 214)"/>
+          <rect x="178.5" y="170.5" width="3.5" height="7" rx="1" fill="url(#goldCase3)" transform="rotate(60 160 214)"/>
+          <rect x="178.5" y="170.5" width="3.5" height="7" rx="1" fill="url(#goldCase3)" transform="rotate(120 160 214)"/>
+          <rect x="178.5" y="170.5" width="3.5" height="7" rx="1" fill="url(#goldCase3)" transform="rotate(150 160 214)"/>
+          <rect x="178.5" y="170.5" width="3.5" height="7" rx="1" fill="url(#goldCase3)" transform="rotate(210 160 214)"/>
+          <rect x="178.5" y="170.5" width="3.5" height="7" rx="1" fill="url(#goldCase3)" transform="rotate(240 160 214)"/>
+          <rect x="178.5" y="170.5" width="3.5" height="7" rx="1" fill="url(#goldCase3)" transform="rotate(300 160 214)"/>
+          <rect x="178.5" y="170.5" width="3.5" height="7" rx="1" fill="url(#goldCase3)" transform="rotate(330 160 214)"/>
+
+          <!-- Brand -->
+          <text x="160" y="197" font-family="Cinzel" font-size="5" fill="rgba(80,60,10,0.7)" text-anchor="middle" letter-spacing="2">RELOJES</text>
+          <text x="160" y="205" font-family="Cinzel" font-size="8" fill="#6A4E10" text-anchor="middle" letter-spacing="3" font-weight="700">SUIZA</text>
+          <text x="160" y="213" font-family="Jost" font-size="4" fill="rgba(100,80,20,.5)" text-anchor="middle" letter-spacing="1">PERPETUAL CALENDAR</text>
+
+          <!-- Swiss cross -->
+          <rect x="156.5" y="220" width="7" height="2" fill="rgba(100,75,20,0.6)"/>
+          <rect x="159" y="218" width="2" height="6" fill="rgba(100,75,20,0.6)"/>
+
+          <!-- HOUR HAND - leaf style -->
+          <g style="transform-origin:160px 214px; animation:hRot3 43200s linear infinite">
+            <path d="M157.5 214 Q160 175 162.5 214Z" fill="url(#goldCase3)"/>
+            <path d="M158.5 214 Q160 182 161.5 214Z" fill="#FFED9A"/>
+          </g>
+          <!-- MINUTE HAND -->
+          <g style="transform-origin:160px 214px; animation:mRot3 3600s linear infinite">
+            <path d="M159 214 Q160 168 161 214Z" fill="url(#goldCase3)"/>
+          </g>
+          <!-- SECOND HAND -->
+          <g style="transform-origin:160px 214px; animation:sRot3 60s linear infinite">
+            <line x1="160" y1="222" x2="160" y2="167" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="160" cy="220" r="3" fill="#8B1A1A"/>
+          </g>
+
+          <!-- Crystal -->
+          <ellipse cx="143" cy="197" rx="18" ry="10" fill="url(#crystalShine3)"/>
+
+          <!-- Center -->
+          <circle cx="160" cy="214" r="5" fill="url(#goldCase3)"/>
+          <circle cx="160" cy="214" r="2.5" fill="#6A4E10"/>
+
+          <!-- CROWN -->
+          <rect x="222" y="208" width="12" height="12" rx="3" fill="url(#goldCase3)"/>
+          <line x1="225" y1="211" x2="225" y2="217" stroke="rgba(90,60,5,.5)" stroke-width=".5"/>
+          <line x1="228" y1="211" x2="228" y2="217" stroke="rgba(90,60,5,.5)" stroke-width=".5"/>
+          <line x1="231" y1="211" x2="231" y2="217" stroke="rgba(90,60,5,.5)" stroke-width=".5"/>
+
+          <!-- STRAP BOTTOM -->
+          <rect x="116" y="284" width="88" height="92" rx="7" fill="url(#strapGold)"/>
+          <path d="M121 290 Q131 286 141 290 Q151 286 161 290 Q171 286 181 290 Q191 286 199 290" fill="none" stroke="rgba(180,130,30,.2)" stroke-width="1"/>
+          <path d="M121 298 Q131 294 141 298 Q151 294 161 298 Q171 294 181 298 Q191 294 199 298" fill="none" stroke="rgba(180,130,30,.2)" stroke-width="1"/>
+          <path d="M121 306 Q131 302 141 306 Q151 302 161 306 Q171 302 181 306 Q191 302 199 306" fill="none" stroke="rgba(180,130,30,.2)" stroke-width="1"/>
+          <!-- gold buckle -->
+          <rect x="145" y="343" width="30" height="19" rx="4" fill="url(#goldCase3)"/>
+          <rect x="149" y="347" width="22" height="11" rx="2" fill="none" stroke="rgba(90,60,5,.8)" stroke-width="1.2"/>
+          <line x1="159" y1="345" x2="159" y2="362" stroke="rgba(90,60,5,.5)" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="watch-badge-row">
+        <div class="w-badge" style="border-color:rgba(212,175,55,.4);color:#D4AF37">✦ NUEVA LLEGADA</div>
+        <div class="w-badge">FASE LUNAR</div>
+      </div>
+    </div>
+
+    <div class="watch-info">
+      <span class="w-num reveal">03</span>
+      <h2 class="w-name reveal d1">Swiss Aurum</h2>
+      <p class="w-series reveal d1" style="color:#D4AF37">Moon Phase Perpetual</p>
+      <p class="w-tagline reveal d2">El reloj más elegante de nuestra familia. El Swiss Aurum está pensado para momentos especiales — una boda, un ascenso, un regalo que se guarda toda la vida. Pura tradición suiza en oro sólido.</p>
+      <div class="w-divider reveal d2" style="background:linear-gradient(90deg,#D4AF37,transparent)"></div>
+
+      <div class="features-grid reveal d3">
+        <div class="feat-card">
+          <span class="feat-icon">🌕</span>
+          <span class="feat-title">FASE DE LA LUNA</span>
+          <p class="feat-desc">Una ventanita en el reloj muestra <strong>cómo se ve la luna en el cielo esta noche</strong>. Es una complicación mecánica que los maestros relojeros tardan semanas en calibrar.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">📆</span>
+          <span class="feat-title">CALENDARIO ETERNO</span>
+          <p class="feat-desc">Sabe exactamente cuántos días tiene cada mes, incluso en años bisiestos. <strong>No tenés que ajustarlo nunca</strong> — cambia solo, siempre correcto.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🥇</span>
+          <span class="feat-title">ORO AMARILLO SÓLIDO</span>
+          <p class="feat-desc">La caja es de <strong>oro de 18 quilates de verdad</strong>. No es chapado ni bañado — es oro macizo que nunca pierde su color ni se deteriora.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🎨</span>
+          <span class="feat-title">ESFERA TALLADA A MANO</span>
+          <p class="feat-desc">El fondo crema está tallado con un patrón de diamantes microscópicos que solo se ven al acercar el reloj. <strong>Un trabajo de joyería pura.</strong></p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🦢</span>
+          <span class="feat-title">CORREA DE AVESTRUZ</span>
+          <p class="feat-desc">La pulsera está hecha con cuero de avestruz genuino — <strong>reconocible por sus bolitas características</strong>. Es el cuero más fino que existe para relojes de lujo.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🎁</span>
+          <span class="feat-title">VIENE EN CAJA DE CAOBA</span>
+          <p class="feat-desc">Incluye una <strong>caja de madera de caoba</strong> con terciopelo en el interior, certificado de autenticidad y herramienta para ajustar la pulsera.</p>
+        </div>
+      </div>
+
+      <div class="w-price-row reveal d4">
+        <div class="w-price-block">
+          <span class="w-price-label">PRECIO DE VENTA</span>
+          <div class="w-price" style="color:#D4AF37"><sup>$</sup>8.200 <small style="color:var(--muted)">USD</small></div>
+        </div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+          <button class="btn-primary" style="background:linear-gradient(135deg,#D4AF37,#8B6914);color:#0A0800">COMPRAR AHORA</button>
+          <button class="btn-secondary" style="color:#D4AF37;border-color:rgba(212,175,55,.5)">MÁS INFO</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <span class="stat-n">127</span>
+      <span class="stat-l">AÑOS HACIENDO RELOJES</span>
+    </div>
+    <div class="stat-item reveal d1">
+      <span class="stat-n">850+</span>
+      <span class="stat-l">PIEZAS AL AÑO</span>
+    </div>
+    <div class="stat-item reveal d2">
+      <span class="stat-n">42</span>
+      <span class="stat-l">PAÍSES DEL MUNDO</span>
+    </div>
+    <div class="stat-item reveal d3">
+      <span class="stat-n">100%</span>
+      <span class="stat-l">HECHO A MANO</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="why-header">
+    <span class="section-label reveal">POR QUÉ ELEGIRNOS</span>
+    <h2 class="section-title reveal d1">Lo que nos hace <em>diferentes</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <span class="why-icon">🇨🇭</span>
+      <div class="why-title">ORIGEN SUIZO GARANTIZADO</div>
+      <p class="why-text">Todos nuestros relojes se fabrican en Ginebra, Suiza. No son imitaciones ni ensamblados en otro país — son 100% suizos con certificación oficial.</p>
+    </div>
+    <div class="why-card reveal d1">
+      <span class="why-icon">🔍</span>
+      <div class="why-title">REVISADO 200 VECES</div>
+      <p class="why-text">Antes de salir de la fábrica, cada reloj pasa por 200 controles de calidad. Si algo no es perfecto, se desmonta y se vuelve a armar desde cero.</p>
+    </div>
+    <div class="why-card reveal d2">
+      <span class="why-icon">📜</span>
+      <div class="why-title">GARANTÍA DE POR VIDA</div>
+      <p class="why-text">Respaldamos cada reloj con garantía de por vida en el mecanismo. Si algo falla, lo reparamos o reemplazamos sin costo — para siempre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-wordmark">RELOJES SUIZA</span>
+  <p class="footer-sub">SWISS WATCHMAKERS · EST. 1898 · GINEBRA, SUIZA</p>
+  <ul class="footer-links">
+    <li><a href="#">Colección</a></li>
+    <li><a href="#">Nuestra Historia</a></li>
+    <li><a href="#">Tiendas</a></li>
+    <li><a href="#">Servicio Técnico</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 RELOJES SUIZA · TODOS LOS DERECHOS RESERVADOS</p>
+</footer>
+
+</div><!-- end #main -->
+
+<style>
+@keyframes hRot  {from{transform:rotate(0deg)}  to{transform:rotate(360deg)}}
+@keyframes mRot  {from{transform:rotate(0deg)}  to{transform:rotate(360deg)}}
+@keyframes sRot1 {from{transform:rotate(0deg)}  to{transform:rotate(360deg)}}
+@keyframes hRot2 {from{transform:rotate(90deg)} to{transform:rotate(450deg)}}
+@keyframes mRot2 {from{transform:rotate(210deg)}to{transform:rotate(570deg)}}
+@keyframes sRot2 {from{transform:rotate(30deg)} to{transform:rotate(390deg)}}
+@keyframes hRot3 {from{transform:rotate(330deg)}to{transform:rotate(690deg)}}
+@keyframes mRot3 {from{transform:rotate(150deg)}to{transform:rotate(510deg)}}
+@keyframes sRot3 {from{transform:rotate(80deg)} to{transform:rotate(440deg)}}
+</style>
+
+<script>
+// Particles
+const pts = document.getElementById('pts');
+for(let i=0;i<30;i++){
+  const p=document.createElement('div');
+  p.className='pt';
+  const s=1+Math.random()*2.5;
+  p.style.cssText=`left:${Math.random()*100}%;width:${s}px;height:${s}px;animation-duration:${7+Math.random()*10}s;animation-delay:${Math.random()*9}s;`;
+  pts.appendChild(p);
+}
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
